@@ -1,4 +1,3 @@
-#include QMK_KEYBOARD_H
 #include "iris.h"
 #include "action_layer.h"
 #include "eeconfig.h"
@@ -9,23 +8,25 @@ extern keymap_config_t keymap_config;
 enum {
     TD_LGUI_LALT = 0,
     TD_RGUI_RALT,
+    TD_RALT_RGUI,
     TD_HOME_END
 };
 
 #define KC_ KC_TRNS
 
-#define KC_GRAV GRAVE
+#define KC_GRAV KC_GRAVE
 #define KC_BL_S BL_STEP
-#define KC_CTSC MT(LCTL,KC_ESC)
+#define KC_CTSC MT(MOD_LCTL,KC_ESC)
 #define KC_DBUG DEBUG
 #define KC_DVRK DVORAK
+#define KC_QWRT QWERTY
 #define KC_GMNG GAMING
 #define KC_HOND TD(TD_HOME_END)
 #define KC_LGA TD(TD_LGUI_LALT)
 #define KC_LOWR LOWER
 #define KC_NUMP NUMPAD
 #define KC_RASE RAISE
-#define KC_RGA TD(TD_RGUI_RALT)
+#define KC_RGA TD(TD_RALT_RGUI)
 #define KC_RHUD RGB_HUD
 #define KC_RHUI RGB_HUI
 #define KC_RMD RGB_MOD
@@ -38,15 +39,17 @@ enum {
 #define KC_RVAI RGB_VAI
 
 #define _DVORAK 0
-#define _GAMING 1
-#define _NUMPAD 2
-#define _LOWER  3
-#define _RAISE  4
+#define _QWERTY 1
+#define _GAMING 2
+#define _NUMPAD 3
+#define _LOWER  4
+#define _RAISE  5
 
 #define _ADJUST 16
 
 enum custom_keycodes {
   DVORAK = SAFE_RANGE,
+  QWERTY,
   GAMING,
   NUMPAD,
   LOWER,
@@ -70,6 +73,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                  `----+----+----'        `----+----+----'
   ),
 
+  [_QWERTY] = LAYOUT_kc(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+     ESC , 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,BSPC,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+     TAB , Q  , W  , E  , R  , T  ,                Y  , U  , I  , O  , P  ,BSLS,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+     CTSC, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+     LSFT, Z  , X  , C  , V  , B  ,    ,     HOND, N  , M  ,COMM,DOT ,SLSH,RSFT,
+  //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
+                        LGA,LOWR,ENT ,         SPC ,RASE,RGA
+  //                  `----+----+----'        `----+----+----'
+  ),
+
   [_GAMING] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      ESC , 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,ESC ,
@@ -80,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      LSFT, Z  , X  , C  , V  , B  ,    ,     ENT , N  , M  ,COMM,DOT ,SLSH,RSFT,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                        LGA,LOWR,SPC ,         SPC ,RASE,RGA
+                        SPC ,LOWR,SPC ,         SPC ,RASE,RGA
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -132,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,RRMD,RHUD,RSAD,RVAD,BL_S,                   ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,DVRK,    ,    ,                   ,GMNG,NUMP,    ,    ,    ,
+         ,    ,    ,DVRK,QWRT,    ,                   ,GMNG,NUMP,    ,    ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
          ,DBUG,    ,    ,    ,RST ,    ,         ,    ,    ,    ,    ,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
@@ -150,6 +167,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DVORAK:
       if (record->event.pressed) {
         persistent_default_layer_set(1UL<<_DVORAK);
+      }
+      return false;
+      break;
+    case QWERTY:
+      if (record->event.pressed) {
+        persistent_default_layer_set(1UL<<_QWERTY);
       }
       return false;
       break;
@@ -219,7 +242,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for L-GUI, twice for L-Alt
     [TD_LGUI_LALT] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_LALT),
     // Tap once for R-GUI, twice for R-Alt
-    [TD_RGUI_RALT] = ACTION_TAP_DANCE_DOUBLE(KC_RGUI, KC_RALT),
+    [TD_RALT_RGUI] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_RGUI),
     // Tap once for HOME, twice for END
     [TD_HOME_END] = ACTION_TAP_DANCE_DOUBLE(KC_HOME, KC_END),
 };

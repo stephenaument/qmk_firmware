@@ -14,17 +14,17 @@ enum {
 
 #define KC_ KC_TRNS
 
-#define KC_GRAV KC_GRAVE
 #define KC_BL_S BL_STEP
 #define KC_CTSC MT(MOD_LCTL,KC_ESC)
 #define KC_DBUG DEBUG
 #define KC_DVRK DVORAK
-#define KC_QWRT QWERTY
 #define KC_GMNG GAMING
+#define KC_GRAV KC_GRAVE
 #define KC_HOND TD(TD_HOME_END)
 #define KC_LGA TD(TD_LGUI_LALT)
 #define KC_LOWR LOWER
 #define KC_NUMP NUMPAD
+#define KC_QWRT QWERTY
 #define KC_RASE RAISE
 #define KC_RGA TD(TD_RALT_RGUI)
 #define KC_RHUD RGB_HUD
@@ -37,6 +37,7 @@ enum {
 #define KC_RTOG RGB_TOG
 #define KC_RVAD RGB_VAD
 #define KC_RVAI RGB_VAI
+#define KC_SENT MT(MOD_LSFT,KC_ENT)
 
 #define _DVORAK 0
 #define _QWERTY 1
@@ -67,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      CTSC, A  , O  , E  , U  , I  ,                D  , H  , T  , N  , S  ,MINS,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT,SCLN, Q  , J  , K  , X  ,    ,     HOND, B  , M  , W  , V  , Z  ,RSFT,
+     LSFT,SCLN, Q  , J  , K  , X  ,    ,     HOND, B  , M  , W  , V  , Z  ,SENT,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         LGA,LOWR,ENT ,         SPC ,RASE,RGA
   //                  `----+----+----'        `----+----+----'
@@ -81,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      CTSC, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT, Z  , X  , C  , V  , B  ,    ,     HOND, N  , M  ,COMM,DOT ,SLSH,RSFT,
+     LSFT, Z  , X  , C  , V  , B  ,    ,     HOND, N  , M  ,COMM,DOT ,SLSH,SENT,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         LGA,LOWR,ENT ,         SPC ,RASE,RGA
   //                  `----+----+----'        `----+----+----'
@@ -95,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      CTSC, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,RCTL,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT, Z  , X  , C  , V  , B  ,    ,     ENT , N  , M  ,COMM,DOT ,SLSH,RSFT,
+     LSFT, Z  , X  , C  , V  , B  ,    ,     ENT , N  , M  ,COMM,DOT ,SLSH,SENT,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         SPC ,LOWR,SPC ,         SPC ,RASE,RGA
   //                  `----+----+----'        `----+----+----'

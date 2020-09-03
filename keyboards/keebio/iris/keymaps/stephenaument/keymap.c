@@ -15,7 +15,7 @@ enum {
 #define KC_ KC_TRNS
 
 #define KC_BL_S BL_STEP
-#define KC_CTSC MT(MOD_LCTL,KC_ESC)
+#define KC_CTSC LCTL_T(KC_ESC)
 #define KC_DBUG DEBUG
 #define KC_DVRK DVORAK
 #define KC_GMNG GAMING
@@ -37,7 +37,7 @@ enum {
 #define KC_RTOG RGB_TOG
 #define KC_RVAD RGB_VAD
 #define KC_RVAI RGB_VAI
-#define KC_SENT MT(MOD_LSFT,KC_ENT)
+#define KC_SENT RSFT_T(KC_ENT)
 
 #define _DVORAK 0
 #define _QWERTY 1

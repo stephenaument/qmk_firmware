@@ -23,7 +23,6 @@ enum {
 #define KC_HOND TD(TD_HOME_END)
 #define KC_LGA TD(TD_LGUI_LALT)
 #define KC_LOWR LOWER
-#define KC_NUMP NUMPAD
 #define KC_QWRT QWERTY
 #define KC_RASE RAISE
 #define KC_RGA TD(TD_RALT_RGUI)
@@ -42,9 +41,8 @@ enum {
 #define _DVORAK 0
 #define _QWERTY 1
 #define _GAMING 2
-#define _NUMPAD 3
-#define _LOWER  4
-#define _RAISE  5
+#define _LOWER  3
+#define _RAISE  4
 
 #define _ADJUST 16
 
@@ -52,7 +50,6 @@ enum custom_keycodes {
   DVORAK = SAFE_RANGE,
   QWERTY,
   GAMING,
-  NUMPAD,
   LOWER,
   RAISE,
   ADJUST,
@@ -102,25 +99,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                  `----+----+----'        `----+----+----'
   ),
 
-  [_NUMPAD] = LAYOUT_kc(
-  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,    ,    ,    ,               NLCK, P7 , P8 , P9 ,PSLS,BSPC,
-  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,                   , P4 , P5 , P6 ,PAST,    ,
-  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,                   , P1 , P2 , P3 ,PPLS,ENT ,
-  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,    , P0 , P0 ,PDOT,PMNS,    ,
-  //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                        LGA,LOWR,ENT,          SPC ,RASE,RGA
-  //                  `----+----+----'        `----+----+----'
-  ),
-
   [_LOWER] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,BSPC,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,GRAV,    , UP ,EQL ,LBRC,               RBRC, 7  , 8  , 9  , 0  ,BSLS,
+     TILD,GRAV,    , UP ,EQL ,LBRC,               RBRC, P7 , P8 , P9 , 0  ,BSLS,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,DEL ,LEFT,DOWN,RGHT,LPRN,               RPRN, P4 , P5 , P6 ,PLUS,PIPE,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
@@ -136,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,BSLS,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,MPRV,MNXT,VOLU,PGUP,UNDS,               EQL ,HOME,MUTE,    ,    ,    ,
+     F12 , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 ,F10 ,F11 ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,MSTP,MPLY,VOLD,PGDN,MINS,    ,         ,PLUS,END ,    ,    ,    ,    ,
+     ESC , 1  , 2  , 3  , 4  , 5  ,    ,         , 6  , 7  , 8  , 9  , 0  ,ESC ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,    ,             ,    ,
   //                  `----+----+----'        `----+----+----'
@@ -150,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,RRMD,RHUD,RSAD,RVAD,BL_S,                   ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,DVRK,QWRT,    ,                   ,GMNG,NUMP,    ,    ,    ,
+         ,    ,    ,DVRK,QWRT,    ,                   ,GMNG,    ,    ,    ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
          ,DBUG,    ,    ,    ,RST ,    ,         ,    ,    ,    ,    ,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
@@ -174,12 +157,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QWERTY:
       if (record->event.pressed) {
         persistent_default_layer_set(1UL<<_QWERTY);
-      }
-      return false;
-      break;
-    case NUMPAD:
-      if (record->event.pressed) {
-        persistent_default_layer_set(1UL<<_NUMPAD);
       }
       return false;
       break;

@@ -37,6 +37,14 @@ enum {
 #define KC_RVAD RGB_VAD
 #define KC_RVAI RGB_VAI
 #define KC_SENT RSFT_T(KC_ENT)
+#define KC_CME CMD_T(KC_E)
+#define KC_CMT CMD_T(KC_T)
+#define KC_SHU LSFT_T(KC_U)
+#define KC_SHH RSFT_T(KC_H)
+#define KC_ALO ALT_T(KC_O)
+#define KC_ALN ALT_T(KC_N)
+#define KC_CTA CTL_T(KC_A)
+#define KC_CTS CTL_T(KC_S)
 
 #define _DVORAK 0
 #define _QWERTY 1
@@ -63,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      TAB ,QUOT,COMM,DOT , P  , Y  ,                F  , G  , C  , R  , L  ,SLSH,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     CTSC, A  , O  , E  , U  , I  ,                D  , H  , T  , N  , S  ,MINS,
+     CTSC,CTA ,ALO ,CME ,SHU , I  ,                D  ,SHH ,CMT ,ALN ,CTS ,MINS,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      LSFT,SCLN, Q  , J  , K  , X  ,    ,     HOND, B  , M  , W  , V  , Z  ,SENT,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
@@ -79,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      CTSC, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LSFT, Z  , X  , C  , V  , B  ,    ,     HOND, N  , M  ,COMM,DOT ,SLSH,SENT,
+     LSFT, Z  , X  , C  , V  , B  ,    ,     LOWR, N  , M  ,COMM,DOT ,SLSH,SENT,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                         LGA,LOWR,ENT ,         SPC ,RASE,RGA
   //                  `----+----+----'        `----+----+----'

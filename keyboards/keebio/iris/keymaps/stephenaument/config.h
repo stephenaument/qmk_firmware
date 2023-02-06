@@ -33,3 +33,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef ENCODERS_PAD_B
 #define ENCODERS_PAD_A { B3 }
 #define ENCODERS_PAD_B { B2 }
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD

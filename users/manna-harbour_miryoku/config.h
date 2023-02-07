@@ -5,8 +5,6 @@
 
 #pragma once
 
-#include "custom_config.h"
-
 // default but used in macros
 #undef TAPPING_TERM
 #define TAPPING_TERM 200
@@ -40,4 +38,6 @@
   #define COMBO_TERM 200
   #define EXTRA_SHORT_COMBOS
 #endif
+
+#include "custom_config.h"
 

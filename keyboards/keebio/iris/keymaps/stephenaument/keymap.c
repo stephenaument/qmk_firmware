@@ -224,21 +224,21 @@ void persistent_default_layer_set(uint16_t default_layer) {
 
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-  if (index == 0) {
     if (clockwise) {
-        tap_code(KC_VOLU);
-    } else {
-        tap_code(KC_VOLD);
-    }
-  }
-  else if (index == 1) {
-    if (clockwise) {
-        tap_code(KC_PGDN);
-    } else {
+      #ifdef MOUSEKEY_ENABLE
+        tap_code(KC_MS_WH_UP);
+      #else
         tap_code(KC_PGUP);
+      #endif
+    } else {
+      #ifdef MOUSEKEY_ENABLE
+        tap_code(KC_MS_WH_DOWN);
+      #else
+        tap_code(KC_PGDN);
+      #endif
     }
-  }
-  return clockwise;
+
+    return false;
 }
 
 // Tap Dance Definitions

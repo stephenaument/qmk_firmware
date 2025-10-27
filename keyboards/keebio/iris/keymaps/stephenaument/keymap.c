@@ -22,9 +22,9 @@ enum {
 #define U_MEDIA MO(_MEDIA)
 
 #define U_UND KC_UNDO
-#define U_CUT KC_CUT
-#define U_CPY KC_COPY
-#define U_PST KC_PASTE
+#define U_CUT LGUI(KC_X)// KC_CUT
+#define U_CPY LGUI(KC_C)// KC_COPY
+#define U_PST LGUI(KC_V)// KC_PASTE
 #define U_RDO KC_AGAIN
 
 #define KC_BL_S BL_STEP

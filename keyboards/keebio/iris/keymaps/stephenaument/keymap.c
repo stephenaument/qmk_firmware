@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├───────┼────────┼──────┼────────┼──────┼───────┤                      ├───────┼───────┼───────┼───────┼───────┼───────┤
      KC_CTSC,KC_CTA ,KC_ALO ,KC_CME ,KC_SHU , KC_I  ,                        KC_D  ,KC_SHH ,KC_CMT ,KC_ALN ,KC_CTS ,KC_MINS,
   //├───────┼────────┼──────┼────────┼──────┼───────┼──────┐       ┌──────┼────────┼───────┼───────┼───────┼───────┼───────┤
-     KC_LSFT,KC_SLSH, KC_Q  , KC_J  , KC_K  , KC_X  ,_______,      KC_HOND, KC_B  , KC_M  , KC_W  , KC_V  , KC_Z  ,KC_SENT,
+     KC_LSFT,KC_SLSH, KC_Q  , KC_J  , KC_K  , KC_X  ,KC_MPLY,      KC_HOND, KC_B  , KC_M  , KC_W  , KC_V  , KC_Z  ,KC_SENT,
   //└───────┴────────┴──────┴───┬────┴───┬──┴────┬──┴────┬─┘       └─┬────┴──┬ ────┴─┬─────┴─┬─────┴───────┴───────┴───────┘
                                   KC_LDEL,KC_LNB,KC_LENT,             KC_RMS,KC_RTAB,KC_RESC
                              // └────────┴───────┴───────┘           └───────┴───────┴───────┘
